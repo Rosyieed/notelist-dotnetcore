@@ -1,0 +1,50 @@
+@model NoteList.Models.Note
+
+@{
+    ViewData["Title"] = "Edit Note";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-secondary bg-opacity-75 text-white py-3 rounded-top-3 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-pencil-fill fs-4 me-2"></i>
+                    <h4 class="mb-0 fw-bold">Edit Note</h4>
+                </div>
+            </div>
+            <div class="card-body p-4 p-md-5">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4 shadow-sm" role="alert"></div>
+                    
+                    <input type="hidden" asp-for="Id" />
+                    
+                    <div class="mb-4">
+                        <label asp-for="Title" class="form-label fw-bold text-dark">Note Title</label>
+                        <input asp-for="Title" class="form-control form-control-lg bg-light" placeholder="Title" />
+                        <span asp-validation-for="Title" class="text-danger small mt-1 d-block"></span>
+                    </div>
+
+                    <div class="mb-5">
+                        <label asp-for="Content" class="form-label fw-bold text-dark">Note Content</label>
+                        <textarea asp-for="Content" class="form-control bg-light" rows="8"></textarea>
+                        <span asp-validation-for="Content" class="text-danger small mt-1 d-block"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                        <a asp-action="Index" class="btn btn-outline-secondary px-4 rounded-pill">
+                            <i class="bi bi-arrow-left me-1"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary px-5 rounded-pill fw-bold shadow-sm">
+                            <i class="bi bi-check-lg me-1"></i> Update Note
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
